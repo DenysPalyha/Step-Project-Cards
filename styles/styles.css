@@ -94,7 +94,19 @@
   width: 300px;
 }
 
+.not-valid-log-in {
+  border: 1px solid red;
+}
+
 .form__input-password {
   margin-left: 20px;
   width: 300px;
+}
+
+.alert__dangers-email {
+  position: absolute;
+  top: 220px;
+  right: 300px;
+  width: 400px;
+  z-index: 10000000;
 }
