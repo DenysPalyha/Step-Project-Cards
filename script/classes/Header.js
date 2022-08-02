@@ -20,6 +20,8 @@ class Header {
     divContainer.classList.add("header__flex-position");
     this.buttonLogInUser.classList.add("btn");
     this.buttonLogInUser.classList.add("btn-primary");
+    this.buttonLogInUser.classList.add("js-button-log-in");
+    this.divWrapperBtnLogIn.classList.add("header__wrraper-btn");
 
     this.buttonLogInUser.setAttribute("type", "button");
     this.buttonLogInUser.innerText = "Log in";

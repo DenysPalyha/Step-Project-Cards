@@ -1,4 +1,6 @@
 import Modal from "./Modal.js";
+import { logInUser } from "../api/logInUser.js";
+import Header from "./Header.js";
 
 class LogIn extends Modal {
   constructor() {
@@ -43,8 +45,47 @@ class LogIn extends Modal {
     this.modalFooter.append(this.btnComeIn);
   }
 
+  warnNotEmail(container = document.body) {
+    const divWarn = document.createElement("div");
+    divWarn.classList.add("alert");
+    divWarn.classList.add("alert-danger");
+    divWarn.classList.add("alert__dangers-email");
+    divWarn.setAttribute("role", "alert");
+    divWarn.innerText = "Your email address or password is not correct!";
+    container.append(divWarn);
+
+    setTimeout(() => {
+      divWarn.remove();
+    }, 2000);
+  }
+
   render() {
     super.render();
+
+    this.btnComeIn.addEventListener("click", (e) => {
+      e.preventDefault();
+
+      const emailPattern = /^[a-zA-Z0-9._-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,4}$/;
+      const resWalidEmeil = emailPattern.test(this.inputEmail.value);
+
+      const strongRegex = new RegExp("^(?=.*[0-9])(?=.{3,})");
+      const resWalidPssword = strongRegex.test(this.inputPassword.value);
+
+      if (resWalidEmeil && resWalidPssword) {
+        this.inputEmail.classList.remove("not-valid-log-in");
+        logInUser(this.inputEmail.value, this.inputPassword.value);
+        this.closeModal();
+      }
+
+      if (resWalidEmeil === false) {
+        this.inputEmail.classList.add("not-valid-log-in");
+        this.warnNotEmail();
+      }
+      if (resWalidPssword === false) {
+        this.inputPassword.classList.add("not-valid-log-in");
+        this.warnNotEmail();
+      }
+    });
   }
 }
 
