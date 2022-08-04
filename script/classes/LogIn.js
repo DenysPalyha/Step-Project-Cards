@@ -1,6 +1,5 @@
 import Modal from "./Modal.js";
 import { logInUser } from "../api/logInUser.js";
-import Header from "./Header.js";
 
 class LogIn extends Modal {
   constructor() {
