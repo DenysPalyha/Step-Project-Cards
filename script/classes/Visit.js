@@ -1,17 +1,29 @@
 import { root } from "./Header.js";
 
 class Visit {
-  constructor(title, fullName, doctor, priority, description) {
+  constructor(
+    deletFunction,
+    editCardVisitFn,
+    id,
+    title,
+    fullName,
+    doctor,
+    priority,
+    description
+  ) {
+    this.id = id;
     this.title = title;
     this.fullName = fullName;
     this.description = description;
     this.doctor = doctor;
     this.priority = priority;
+    this.deletFunction = deletFunction;
+    this.editCardVisitFn = editCardVisitFn;
 
     this.cardVisit = document.createElement("div");
     this.fullNameElem = document.createElement("p");
     this.buttonEditCard = document.createElement("button");
-    this.buttonCloseCard = document.createElement("button");
+    this.buttonDeleteCard = document.createElement("button");
     this.cardDoctorElem = document.createElement("p");
     this.cardInfoDescShowMore = document.createElement("div");
     this.cardTitleVisit = document.createElement("p");
@@ -35,7 +47,7 @@ class Visit {
     this.fullNameElem.classList.add("card__name-title");
     cardBtnWrapper.classList.add("card__btn");
     this.buttonEditCard.classList.add("btn__edit-card");
-    this.buttonCloseCard.classList.add("btn-close");
+    this.buttonDeleteCard.classList.add("btn-close");
     this.cardDoctorElem.classList.add("card__doctor");
     this.cardInfoDescShowMore.classList.add("card__info");
     this.cardInfoDescShowMore.classList.add("hide__card");
@@ -44,9 +56,10 @@ class Visit {
     this.statusCardPriority.classList.add("card__priority");
     this.buttonShowMoreInfo.classList.add("btn__show-more");
 
+    this.cardVisit.setAttribute("id", `${this.id}`);
     this.buttonEditCard.setAttribute("type", "button");
-    this.buttonCloseCard.setAttribute("type", "button");
-    this.buttonCloseCard.setAttribute("aria-label", "Close");
+    this.buttonDeleteCard.setAttribute("type", "button");
+    this.buttonDeleteCard.setAttribute("aria-label", "Close");
     this.cardInfoDescShowMore.setAttribute("data-show-more", "true");
 
     this.buttonShowMoreInfo.innerText = "Show more";
@@ -107,7 +120,7 @@ class Visit {
       this.buttonShowMoreInfo
     );
     cardWrapper.append(cardBtnWrapper);
-    cardBtnWrapper.append(this.buttonEditCard, this.buttonCloseCard);
+    cardBtnWrapper.append(this.buttonEditCard, this.buttonDeleteCard);
     this.cardInfoDescShowMore.append(divPurpose, divDescrip, divPriority);
   }
 
@@ -138,6 +151,14 @@ class Visit {
       "click",
       this.showAndHideInfoText.bind(this)
     );
+
+    this.buttonDeleteCard.addEventListener("click", () => {
+      this.deletFunction(this.id);
+    });
+
+    this.buttonEditCard.addEventListener("click", () => {
+      this.editCardVisitFn(this.id);
+    });
   }
 }
 

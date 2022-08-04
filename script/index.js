@@ -5,9 +5,15 @@ import VisitDentist from "./classes/VisitDentist.js";
 import VisitTherapist from "./classes/VisitTherapist.js";
 import { container } from "./layout/cardVisitContainer.js";
 
+import { deleteCardVisit } from "./function/deleteCardVisit.js";
+import { editCardVisitFn } from "./function/editCardVisit.js";
+
 new Header().render();
 
 new VisitCardiologist(
+  deleteCardVisit,
+  editCardVisitFn,
+  1,
   "плановый визит",
   "Робен Владилен Анатолиевич",
   "кардиолог",
@@ -17,18 +23,24 @@ new VisitCardiologist(
 ).render(container);
 
 new VisitDentist(
+  deleteCardVisit,
+  editCardVisitFn,
+  2,
   "плановый визит",
   "Робен Владилен Анатолиевич",
-  "кардиолог",
+  "Стоматолог",
   "normal",
   "lorem ipsun teritory!!!",
   "29.09.22"
 ).render(container);
 
 new VisitTherapist(
+  deleteCardVisit,
+  editCardVisitFn,
+  3,
   "плановый визит",
   "Робен Владилен Анатолиевич",
-  "кардиолог",
+  "Терапевт",
   "normal",
   "lorem ipsun teritory!!!",
   "22"

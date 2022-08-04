@@ -2,7 +2,7 @@
 
 .card__flex-position {
   display: flex;
-  align-items: flex-start;
+  align-items: center;
   flex-wrap: wrap;
 }
 
