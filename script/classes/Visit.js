@@ -1,4 +1,4 @@
-const root = document.getElementById("root");
+import { root } from "./Header.js";
 
 class Visit {
   constructor(title, fullName, doctor, priority, description) {
@@ -9,20 +9,25 @@ class Visit {
     this.priority = priority;
 
     this.cardVisit = document.createElement("div");
-    this.fullNameElem = document.createElement("h2");
+    this.fullNameElem = document.createElement("p");
     this.buttonEditCard = document.createElement("button");
     this.buttonCloseCard = document.createElement("button");
-    this.cardDoctorElem = document.createElement("h2");
+    this.cardDoctorElem = document.createElement("p");
     this.cardInfoDescShowMore = document.createElement("div");
-    this.cardTitleVisit = document.createElement("h2");
+    this.cardTitleVisit = document.createElement("p");
     this.cardDescription = document.createElement("p");
-    this.statusCardPriority = document.createElement("h2");
+    this.statusCardPriority = document.createElement("p");
     this.buttonShowMoreInfo = document.createElement("button");
   }
 
   createCardVisit() {
     const cardWrapper = document.createElement("div");
     const cardBtnWrapper = document.createElement("div");
+    const divPriority = document.createElement("div");
+    const divDescrip = document.createElement("div");
+    const divPurpose = document.createElement("div");
+    const divDoctor = document.createElement("div");
+    const divFullName = document.createElement("div");
 
     this.cardVisit.classList.add("card");
     this.cardVisit.classList.add("card__visit");
@@ -64,19 +69,46 @@ class Visit {
     `
     );
 
+    divFullName.insertAdjacentHTML(
+      "beforeend",
+      `<h5 class="card__name-section">Full Name:</h5>`
+    );
+    divFullName.append(this.fullNameElem);
+
+    divDoctor.insertAdjacentHTML(
+      "beforeend",
+      `<h5 class="card__name-section">Doctor:</h5>`
+    );
+    divDoctor.append(this.cardDoctorElem);
+
+    divPurpose.insertAdjacentHTML(
+      "beforeend",
+      `<h5 class="card__name-section">Purpose of the visit:</h5>`
+    );
+    divPurpose.append(this.cardTitleVisit);
+
+    divDescrip.insertAdjacentHTML(
+      "beforeend",
+      `<h5 class="card__name-section">Description-visit:</h5>`
+    );
+    divDescrip.append(this.cardDescription);
+
+    divPriority.insertAdjacentHTML(
+      "beforeend",
+      `<h5 class="card__name-section">Priority:</h5>`
+    );
+    divPriority.append(this.statusCardPriority);
+
     this.cardVisit.append(
       cardWrapper,
-      this.cardDoctorElem,
+      divFullName,
+      divDoctor,
       this.cardInfoDescShowMore,
       this.buttonShowMoreInfo
     );
-    cardWrapper.append(this.fullNameElem, cardBtnWrapper);
+    cardWrapper.append(cardBtnWrapper);
     cardBtnWrapper.append(this.buttonEditCard, this.buttonCloseCard);
-    this.cardInfoDescShowMore.append(
-      this.cardTitleVisit,
-      this.cardDescription,
-      this.statusCardPriority
-    );
+    this.cardInfoDescShowMore.append(divPurpose, divDescrip, divPriority);
   }
 
   showAndHideInfoText() {
@@ -91,7 +123,7 @@ class Visit {
     }
   }
 
-  render() {
+  render(container) {
     this.createCardVisit();
 
     this.fullNameElem.innerText = this.fullName;
@@ -100,7 +132,7 @@ class Visit {
     this.cardDescription.innerText = this.description;
     this.statusCardPriority.innerText = this.priority;
 
-    root.append(this.cardVisit);
+    container.append(this.cardVisit);
 
     this.buttonShowMoreInfo.addEventListener(
       "click",

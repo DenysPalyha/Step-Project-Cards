@@ -1,6 +1,6 @@
 import LogIn from "./LogIn.js";
 
-const root = document.getElementById("root");
+export const root = document.getElementById("root");
 
 class Header {
   constructor() {
@@ -12,7 +12,7 @@ class Header {
     const header = document.createElement("header");
     const divContainer = document.createElement("div");
 
-    root.append(header);
+    root.prepend(header);
 
     header.classList.add("header");
     header.classList.add("bg-secondary");

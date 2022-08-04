@@ -1,14 +1,24 @@
 /* -------------------CARD-VISIT--------------- */
 
+.card__flex-position {
+  display: flex;
+  align-items: flex-start;
+  flex-wrap: wrap;
+}
+
 .card__visit {
   width: 350px;
-  height: auto;
+  margin: 0 70px 30px 0;
   padding: 10px;
   transition: 0.3s linear;
 
   animation-name: animation-text;
   animation-duration: 1s;
   animation-timing-function: linear;
+}
+
+.card__visit:nth-child(3n) {
+  margin-right: 0;
 }
 
 .card__visit:hover {
@@ -31,15 +41,21 @@
 
 .card__wraper {
   display: flex;
-  justify-content: space-between;
+  justify-content: flex-end;
   align-items: center;
 }
 
+.card__name-section {
+  font-size: 14px;
+  line-height: 1;
+}
+
 .card__name-title {
-  margin: 0;
+  margin: 0 0 10px 10px;
   padding: 0;
   font-size: 16px;
   line-height: 1;
+  color: rgb(91, 91, 91);
 }
 
 .card__btn {
@@ -69,9 +85,10 @@
 }
 
 .card__doctor {
-  margin: 10px 0;
+  margin: 0 0 10px 10px;
   font-size: 16px;
   line-height: 1;
+  color: rgb(91, 91, 91);
 }
 
 .card__info {
@@ -115,12 +132,16 @@
 }
 
 .card__description {
+  margin-left: 10px;
   margin-bottom: 10px;
   font-size: 16px;
   line-height: 1;
+  color: rgb(91, 91, 91);
 }
 
 .card__priority {
+  margin-left: 10px;
+  color: rgb(91, 91, 91);
   margin-bottom: 10px;
   font-size: 16px;
   line-height: 1;

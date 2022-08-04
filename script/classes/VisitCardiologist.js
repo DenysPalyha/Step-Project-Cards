@@ -1,7 +1,5 @@
 import Visit from "./Visit.js";
 
-const root = document.getElementById("root");
-
 class VisitCardiologist extends Visit {
   constructor(
     title,
@@ -22,17 +20,17 @@ class VisitCardiologist extends Visit {
     this.age = age;
 
     if (this.normalPressure === undefined) {
-      this.normalPressure = "";
+      this.normalPressure = "-";
     }
     if (this.bodyMassIndex === undefined) {
-      this.bodyMassIndex = "";
+      this.bodyMassIndex = "-";
     }
 
     if (this.cardiovascularSystem === undefined) {
-      this.cardiovascularSystem = "";
+      this.cardiovascularSystem = "-";
     }
     if (this.age === undefined) {
-      this.age = "";
+      this.age = "-";
     }
 
     this.elemPressure = document.createElement("p");
@@ -44,21 +42,48 @@ class VisitCardiologist extends Visit {
   createCardVisit() {
     super.createCardVisit();
 
+    const divPressure = document.createElement("div");
+    const divMassIndex = document.createElement("div");
+    const divCardio = document.createElement("div");
+    const divAge = document.createElement("div");
+
+    divPressure.insertAdjacentHTML(
+      "beforeend",
+      `<h5 class="card__name-section">Pressure:</h5>`
+    );
+    divPressure.append(this.elemPressure);
+    divMassIndex.insertAdjacentHTML(
+      "beforeend",
+      `<h5 class="card__name-section">Mass Index:</h5>`
+    );
+    divMassIndex.append(this.elemMassIndex);
+    divCardio.insertAdjacentHTML(
+      "beforeend",
+      `<h5 class="card__name-section">Diseases of the cardiovascular system:</h5>`
+    );
+    divCardio.append(this.elemCardioSystam);
+
+    divAge.insertAdjacentHTML(
+      "beforeend",
+      `<h5 class="card__name-section">Age:</h5>`
+    );
+    divAge.append(this.elemAge);
+
     this.elemPressure.classList.add("card__description");
     this.elemMassIndex.classList.add("card__description");
     this.elemCardioSystam.classList.add("card__description");
     this.elemAge.classList.add("card__description");
 
     this.cardInfoDescShowMore.append(
-      this.elemPressure,
-      this.elemMassIndex,
-      this.elemCardioSystam,
-      this.elemAge
+      divPressure,
+      divMassIndex,
+      divCardio,
+      divAge
     );
   }
 
-  render() {
-    super.render();
+  render(container) {
+    super.render(container);
 
     this.elemPressure.innerText = this.normalPressure;
     this.elemMassIndex.innerText = this.bodyMassIndex;
