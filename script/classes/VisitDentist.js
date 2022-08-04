@@ -1,8 +1,27 @@
 import Visit from "./Visit.js";
 
 class VisitDentist extends Visit {
-  constructor(title, fullName, doctor, priority, description, dataLastVisit) {
-    super(title, fullName, doctor, priority, description);
+  constructor(
+    deleteCardVisit,
+    editCardVisitFn,
+    id,
+    title,
+    fullName,
+    doctor,
+    priority,
+    description,
+    dataLastVisit
+  ) {
+    super(
+      deleteCardVisit,
+      editCardVisitFn,
+      id,
+      title,
+      fullName,
+      doctor,
+      priority,
+      description
+    );
     this.dataLastVisit = dataLastVisit;
 
     if (this.dataLastVisit === undefined) {

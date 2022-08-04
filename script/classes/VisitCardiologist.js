@@ -2,6 +2,9 @@ import Visit from "./Visit.js";
 
 class VisitCardiologist extends Visit {
   constructor(
+    deletFunction,
+    editCardVisitFn,
+    id,
     title,
     fullName,
     doctor,
@@ -12,7 +15,16 @@ class VisitCardiologist extends Visit {
     cardiovascularSystem,
     age
   ) {
-    super(title, fullName, doctor, priority, description);
+    super(
+      deletFunction,
+      editCardVisitFn,
+      id,
+      title,
+      fullName,
+      doctor,
+      priority,
+      description
+    );
 
     this.normalPressure = normalPressure;
     this.bodyMassIndex = bodyMassIndex;
