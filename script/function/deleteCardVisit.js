@@ -1,4 +1,5 @@
+import CloseCardsModale from "../classes/CloseCardsModal.js";
+
 export const deleteCardVisit = (id) => {
-  const elemForDelet = document.getElementById(id);
-  elemForDelet.remove();
+  new CloseCardsModale(id).render();
 };
