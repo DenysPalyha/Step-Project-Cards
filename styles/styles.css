@@ -2,13 +2,13 @@
 @import url("./cardModal.module.css");
 @import url("./formLogInModal.module.css");
 @import url("./cardVisit.module.css");
-
+@import url("./createCardModalStyle.css");
 html {
-  box-sizing: border-box;
+    box-sizing: border-box;
 }
 
 *,
 *::before,
 *::after {
-  box-sizing: inherit;
+    box-sizing: inherit;
 }
