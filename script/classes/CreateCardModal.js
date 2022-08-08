@@ -41,6 +41,7 @@ class CreateCardModal {
         this.createCardModalForm.classList.add("modal--show");
         this.btnCloseCreateCardModal.classList.add("btn-close");
         this.inputUserFullName.classList.add("input_user_full_name");
+
         this.btnCreateVisite.classList.add("btn");
         this.btnCreateVisite.classList.add("btn-success");
 
@@ -169,8 +170,62 @@ class CreateCardModal {
         })
     }
 
-    // validModal() {
-    //     }
+    validModal() {
+        this.inputUserFullName.addEventListener('blur', () => {
+            let value = this.inputUserFullName.value
+            if (value === "") {
+                this.btnCreateVisite.disabled = true
+                this.inputUserFullName.classList.remove("valid");
+                this.inputUserFullName.classList.add("invalid");
+            } else {
+                this.btnCreateVisite.disabled = false
+                this.inputUserFullName.classList.remove("invalid");
+                this.inputUserFullName.classList.add("valid");
+            }
+        })
+
+        this.visitPurpose.addEventListener('blur', () => {
+            let value = this.visitPurpose.value
+            if (value === "") {
+                this.btnCreateVisite.disabled = true
+                this.visitPurpose.classList.remove("valid");
+                this.visitPurpose.classList.add("invalid");
+            } else {
+                this.btnCreateVisite.disabled = false
+                this.visitPurpose.classList.remove("invalid");
+                this.visitPurpose.classList.add("valid");
+
+            }
+        })
+
+        this.visitDescription.addEventListener('blur', () => {
+            let value = this.visitDescription.value
+            if (value === "") {
+                this.btnCreateVisite.disabled = true
+                this.visitDescription.classList.remove("valid");
+                this.visitDescription.classList.add("invalid");
+            } else {
+                this.btnCreateVisite.disabled = false
+                this.visitDescription.classList.remove("invalid");
+                this.visitDescription.classList.add("valid");
+            }
+        })
+
+        this.typeDoctors.addEventListener('blur', () => {
+            let value = this.typeDoctors.value
+            console.log(value);
+            if (value === "Choose doctor") {
+                this.btnCreateVisite.disabled = true
+                this.typeDoctors.classList.remove("valid");
+                this.typeDoctors.classList.add("invalid");
+            } else {
+                this.btnCreateVisite.disabled = false
+                this.typeDoctors.classList.remove("invalid");
+                this.typeDoctors.classList.add("valid");
+            }
+        })
+
+    }
 
     render(container = this.modalBody) {
         this.createCardModal();
@@ -179,7 +234,7 @@ class CreateCardModal {
         this.therapistCreateModal()
         this.closeCardForm();
         this.selectWraper();
-        // this.validModal();
+        this.validModal();
         container.append(this.createCardModalForm)
     }
 }
