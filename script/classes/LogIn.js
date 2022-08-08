@@ -84,6 +84,13 @@ class LogIn extends Modal {
         this.inputPassword.classList.add("not-valid-log-in");
         this.warnNotEmail();
       }
+
+      if (resWalidEmeil) {
+        this.inputEmail.classList.remove("not-valid-log-in");
+      }
+      if (resWalidPssword) {
+        this.inputPassword.classList.remove("not-valid-log-in");
+      }
     });
   }
 }
