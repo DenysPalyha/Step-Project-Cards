@@ -24,7 +24,7 @@ class VisitTherapist extends Visit {
     );
     this.ageUser = ageUser;
 
-    if (this.ageUser === undefined) {
+    if (this.ageUser === undefined || this.ageUser === "") {
       this.ageUser = "-";
     }
 

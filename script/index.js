@@ -11,7 +11,6 @@ import { editCardVisitFn } from "./function/editCardVisit.js";
 
 new Header().render();
 
-
 new VisitCardiologist(
   deleteCardVisit,
   editCardVisitFn,
@@ -47,4 +46,3 @@ new VisitTherapist(
   "lorem ipsun teritory!!!",
   "22"
 ).render(containerCards);
-
