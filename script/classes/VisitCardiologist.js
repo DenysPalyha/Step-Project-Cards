@@ -1,18 +1,30 @@
 import Visit from "./Visit.js";
 
 class VisitCardiologist extends Visit {
-    constructor(
-        title,
-        fullName,
-        doctor,
-        priority,
-        description,
-        normalPressure,
-        bodyMassIndex,
-        cardiovascularSystem,
-        age
-    ) {
-        super(title, fullName, doctor, priority, description);
+  constructor(
+    deletFunction,
+    editCardVisitFn,
+    id,
+    title,
+    fullName,
+    doctor,
+    priority,
+    description,
+    normalPressure,
+    bodyMassIndex,
+    cardiovascularSystem,
+    age
+  ) {
+    super(
+      deletFunction,
+      editCardVisitFn,
+      id,
+      title,
+      fullName,
+      doctor,
+      priority,
+      description
+    );
 
         this.normalPressure = normalPressure;
         this.bodyMassIndex = bodyMassIndex;

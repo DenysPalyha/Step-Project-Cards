@@ -1,8 +1,10 @@
-import { root } from "../classes/Header.js";
+const root = document.getElementById("root");
 
 const main = document.createElement("main");
-export const container = document.createElement("div");
-container.classList.add("container");
-container.classList.add("card__flex-position");
+const containerCards = document.createElement("div");
+containerCards.classList.add("container");
+containerCards.classList.add("card__flex-position");
 root.append(main);
-main.append(container);
+main.append(containerCards);
+
+export { containerCards };

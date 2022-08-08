@@ -2,7 +2,7 @@
 
 .card__flex-position {
   display: flex;
-  align-items: flex-start;
+  align-items: center;
   flex-wrap: wrap;
 }
 
@@ -149,6 +149,16 @@
 
 .hide__card {
   display: none;
+}
+
+.delet__card-heading {
+  font-size: 26px;
+  line-height: 1;
+  text-align: center;
+}
+
+.button__comfirm {
+  margin-right: 30px;
 }
 
 /* -------------------CARD-VISIT--------------- */
