@@ -3,7 +3,7 @@ import Header from "./classes/Header.js";
 import VisitCardiologist from "./classes/VisitCardiologist.js";
 import VisitDentist from "./classes/VisitDentist.js";
 import VisitTherapist from "./classes/VisitTherapist.js";
-import { container } from "./layout/cardVisitContainer.js";
+import { containerCards } from "./layout/cardVisitContainer.js";
 
 import { deleteCardVisit } from "./function/deleteCardVisit.js";
 import { editCardVisitFn } from "./function/editCardVisit.js";
@@ -20,7 +20,7 @@ new VisitCardiologist(
   "normal",
   "lorem ipsun teritory!!!",
   "120/60"
-).render(container);
+).render(containerCards);
 
 new VisitDentist(
   deleteCardVisit,
@@ -32,7 +32,7 @@ new VisitDentist(
   "normal",
   "lorem ipsun teritory!!!",
   "29.09.22"
-).render(container);
+).render(containerCards);
 
 new VisitTherapist(
   deleteCardVisit,
@@ -44,4 +44,4 @@ new VisitTherapist(
   "normal",
   "lorem ipsun teritory!!!",
   "22"
-).render(container);
+).render(containerCards);
