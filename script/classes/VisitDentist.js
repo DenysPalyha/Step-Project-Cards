@@ -24,7 +24,7 @@ class VisitDentist extends Visit {
     );
     this.dataLastVisit = dataLastVisit;
 
-    if (this.dataLastVisit === undefined) {
+    if (this.dataLastVisit === undefined || this.dataLastVisit === "") {
       this.dataLastVisit = "-";
     }
 
