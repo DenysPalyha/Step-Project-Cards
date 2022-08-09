@@ -7,6 +7,9 @@ import Visit from "./Visit.js";
 import VisitCardiologist from "./VisitCardiologist.js";
 import VisitDentist from "./VisitDentist.js";
 import VisitTherapist from "./VisitTherapist.js";
+import { deleteCardVisit } from "../function/deleteCardVisit.js";
+import { editCardVisitFn } from "../function/editCardVisit.js";
+import { containerCards } from "../layout/cardVisitContainer.js";
 
 class CreateCardModal {
     constructor() {
@@ -121,6 +124,7 @@ class CreateCardModal {
         this.cardiologistTransferredDiseases.setAttribute("placeholder", "Transferred Diseases");
         this.cardiologistPatientAge.setAttribute("type", "text");
         this.cardiologistPatientAge.setAttribute("placeholder", "Patient Age");
+        this.btnCreateVisiteCardio.setAttribute("type", "submit");
 
         this.urgencyPatient.after(this.doctorsVisitListCardio);
         this.doctorsVisitListCardio.append(
@@ -135,36 +139,34 @@ class CreateCardModal {
         // ------------------------------------------------------------------------
         this.btnCreateVisiteCardio.addEventListener("click", async(e) => {
             e.preventDefault();
-            const { status, data } = await createCard(
-                JSON.stringify({
-                    fullName: this.inputUserFullName.value,
-                    doctor: this.typeDoctors.value,
-                    title: this.visitPurpose.value,
-                    description: this.visitDescription.value,
-                    priority: this.urgencyPatient.value,
-                    normalPressure: this.cardiologistBloodPressure.value,
-                    bodyMassIndex: this.cardiologistBodyMassIndex.value,
-                    cardiovascularSystem: this.cardiologistTransferredDiseases.value,
-                    age: this.cardiologistPatientAge.value
-                }))
-            if (status === 200) {
-                this.closeCardForm.bind(this);
-                new VisitCardiologist(
-                    deleteCardVisit,
-                    editCardVisitFn,
-                    data.id,
-                    data.purposeTitle,
-                    data.fullName,
-                    data.doctor,
-                    data.priority,
-                    data.description,
-                    data.normalPressure,
-                    data.bodyMassIndex,
-                    data.cardiovascularSystem,
-                    data.age
-                ).render(container);
-                // this.closeModal();
-            }
+            const data = await createCard({
+                fullName: this.inputUserFullName.value,
+                doctor: this.typeDoctors.value,
+                purposeTitle: this.visitPurpose.value,
+                description: this.visitDescription.value,
+                priority: this.urgencyPatient.value,
+                normalPressure: this.cardiologistBloodPressure.value,
+                bodyMassIndex: this.cardiologistBodyMassIndex.value,
+                cardiovascularSystem: this.cardiologistTransferredDiseases.value,
+                age: this.cardiologistPatientAge.value
+            });
+
+            new VisitCardiologist(
+                deleteCardVisit,
+                editCardVisitFn,
+                data.id,
+                data.purposeTitle,
+                data.fullName,
+                data.doctor,
+                data.priority,
+                data.description,
+                data.normalPressure,
+                data.bodyMassIndex,
+                data.cardiovascularSystem,
+                data.age
+            ).render(containerCards);
+            this.closeCardForm();
+
         })
     }
 
@@ -175,6 +177,7 @@ class CreateCardModal {
 
         this.dentistdateOfLastVisit.setAttribute("type", "text");
         this.dentistdateOfLastVisit.setAttribute("placeholder", "Date Of LastVisit");
+        this.btnCreateVisiteDentist.setAttribute("type", "submit");
 
         this.urgencyPatient.after(this.doctorsVisitListDentist);
         this.doctorsVisitListDentist.append(
@@ -185,30 +188,27 @@ class CreateCardModal {
         // ------------------------------------
         this.btnCreateVisiteDentist.addEventListener("click", async(e) => {
             e.preventDefault();
-            const { status, data } = await createCard(
-                JSON.stringify({
-                    fullName: this.inputUserFullName.value,
-                    doctor: this.typeDoctors.value,
-                    title: this.visitPurpose.value,
-                    description: this.visitDescription.value,
-                    priority: this.urgencyPatient.value,
-                    dataLastVisit: this.dentistdateOfLastVisit.value
-                }))
-            if (status === 200) {
-                this.closeCardForm.bind(this);
-                new VisitDentist(
-                    deleteCardVisit,
-                    editCardVisitFn,
-                    data.id,
-                    data.purposeTitle,
-                    data.fullName,
-                    data.doctor,
-                    data.priority,
-                    data.description,
-                    data.LastVisit
-                ).render(container);
-                // this.closeModal();
-            }
+            const data = await createCard({
+                fullName: this.inputUserFullName.value,
+                doctor: this.typeDoctors.value,
+                purposeTitle: this.visitPurpose.value,
+                description: this.visitDescription.value,
+                priority: this.urgencyPatient.value,
+                dataLastVisit: this.dentistdateOfLastVisit.value
+            })
+
+            new VisitDentist(
+                deleteCardVisit,
+                editCardVisitFn,
+                data.id,
+                data.purposeTitle,
+                data.fullName,
+                data.doctor,
+                data.priority,
+                data.description,
+                data.LastVisit
+            ).render(containerCards);
+            this.closeCardForm();
         })
     }
 
@@ -224,36 +224,34 @@ class CreateCardModal {
 
         this.therapistPatientAge.setAttribute("type", "text");
         this.therapistPatientAge.setAttribute("placeholder", "Patient Age");
+        this.btnCreateVisiteTherapist.setAttribute("type", "submit");
 
         this.btnCreateVisiteTherapist.innerText = "CREATE VISIT";
 
         // ------------------------------------------------------------
         this.btnCreateVisiteTherapist.addEventListener("click", async(e) => {
             e.preventDefault();
-            const { status, data } = await createCard(
-                JSON.stringify({
-                    fullName: this.inputUserFullName.value,
-                    doctor: this.typeDoctors.value,
-                    title: this.visitPurpose.value,
-                    description: this.visitDescription.value,
-                    priority: this.urgencyPatient.value,
-                    ageUser: this.therapistPatientAge.value
-                }))
-            if (status === 200) {
-                this.closeCardForm.bind(this);
-                new VisitTherapist(
-                    deleteCardVisit,
-                    editCardVisitFn,
-                    data.id,
-                    data.purposeTitle,
-                    data.fullName,
-                    data.doctor,
-                    data.priority,
-                    data.description,
-                    data.ageUser
-                ).render(container);
-                // this.closeModal();
-            }
+            const data = await createCard({
+                fullName: this.inputUserFullName.value,
+                doctor: this.typeDoctors.value,
+                purposeTitle: this.visitPurpose.value,
+                description: this.visitDescription.value,
+                priority: this.urgencyPatient.value,
+                ageUser: this.therapistPatientAge.value
+            })
+
+            new VisitTherapist(
+                deleteCardVisit,
+                editCardVisitFn,
+                data.id,
+                data.purposeTitle,
+                data.fullName,
+                data.doctor,
+                data.priority,
+                data.description,
+                data.ageUser
+            ).render(containerCards);
+            this.closeCardForm();
         })
     }
 
