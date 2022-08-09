@@ -1,5 +1,15 @@
 /* -------------------CARD-VISIT--------------- */
 
+.info__string {
+  margin: 30px auto 0;
+  text-align: center;
+}
+
+.info__string-heading {
+  font-size: 20px;
+  line-height: 1;
+}
+
 .card__flex-position {
   display: flex;
   align-items: center;
