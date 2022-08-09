@@ -39,9 +39,14 @@ class CloseCardsModale extends Modal {
 
     this.buttonCancel.addEventListener("click", this.closeModal.bind(this));
 
-    this.buttonComfirm.addEventListener("click", () => {
-      deleteCardVisitApi(this.id);
-      this.closeModal();
+    this.buttonComfirm.addEventListener("click", async () => {
+      const { status } = await deleteCardVisitApi(this.id);
+
+      if (status === 200) {
+        const elemForDelet = document.getElementById(this.id);
+        elemForDelet.remove();
+        this.closeModal();
+      }
     });
   }
 }
