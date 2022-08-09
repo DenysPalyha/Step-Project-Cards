@@ -1,47 +1,51 @@
 import Visit from "./Visit.js";
+import CreateCardModal from "./CreateCardModal.js";
 
 class VisitCardiologist extends Visit {
-  constructor(
-    deletFunction,
-    editCardVisitFn,
-    id,
-    title,
-    fullName,
-    doctor,
-    priority,
-    description,
-    normalPressure,
-    bodyMassIndex,
-    cardiovascularSystem,
-    age
-  ) {
-    super(
-      deletFunction,
-      editCardVisitFn,
-      id,
-      title,
-      fullName,
-      doctor,
-      priority,
-      description
-    );
+    constructor(
+        deletFunction,
+        editCardVisitFn,
+        id,
+        title,
+        fullName,
+        doctor,
+        priority,
+        description,
+        normalPressure,
+        bodyMassIndex,
+        cardiovascularSystem,
+        age
+    ) {
+        super(
+            deletFunction,
+            editCardVisitFn,
+            id,
+            title,
+            fullName,
+            doctor,
+            priority,
+            description
+        );
 
         this.normalPressure = normalPressure;
         this.bodyMassIndex = bodyMassIndex;
         this.cardiovascularSystem = cardiovascularSystem;
         this.age = age;
 
-        if (this.normalPressure === undefined) {
+        if (this.normalPressure === undefined || this.normalPressure === "") {
             this.normalPressure = "-";
         }
-        if (this.bodyMassIndex === undefined) {
+        if (this.bodyMassIndex === undefined || this.bodyMassIndex === "") {
             this.bodyMassIndex = "-";
         }
 
-        if (this.cardiovascularSystem === undefined) {
+        if (
+            this.cardiovascularSystem === undefined ||
+            this.cardiovascularSystem === ""
+        ) {
             this.cardiovascularSystem = "-";
         }
-        if (this.age === undefined) {
+        if (this.age === undefined || this.age === "") {
             this.age = "-";
         }
 

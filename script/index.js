@@ -11,7 +11,8 @@ import { removeBtnLogIngAndAddCreatVisitBtn } from "./function/removeBtnLogingAn
 // import { deleteCardVisit } from "./function/deleteCardVisit.js";
 // import { editCardVisitFn } from "./function/editCardVisit.js";
 
-new Header().render();
+// import createCard from "./api/createCard.js";
+
 
 const token = localStorage.getItem("token");
 
@@ -55,3 +56,4 @@ if (token) {
 //   "lorem ipsun teritory!!!",
 //   "22"
 // ).render(containerCards);
+
