@@ -1,72 +1,72 @@
 import { root } from "./Header.js";
 
 class Visit {
-  constructor(
-    deletFunction,
-    editCardVisitFn,
-    id,
-    title,
-    fullName,
-    doctor,
-    priority,
-    description
-  ) {
-    this.id = id;
-    this.title = title;
-    this.fullName = fullName;
-    this.description = description;
-    this.doctor = doctor;
-    this.priority = priority;
-    this.deletFunction = deletFunction;
-    this.editCardVisitFn = editCardVisitFn;
+    constructor(
+        deletFunction,
+        editCardVisitFn,
+        id,
+        title,
+        fullName,
+        doctor,
+        priority,
+        description
+    ) {
+        this.id = id;
+        this.title = title;
+        this.fullName = fullName;
+        this.description = description;
+        this.doctor = doctor;
+        this.priority = priority;
+        this.deletFunction = deletFunction;
+        this.editCardVisitFn = editCardVisitFn;
 
-    this.cardVisit = document.createElement("div");
-    this.fullNameElem = document.createElement("p");
-    this.buttonEditCard = document.createElement("button");
-    this.buttonDeleteCard = document.createElement("button");
-    this.cardDoctorElem = document.createElement("p");
-    this.cardInfoDescShowMore = document.createElement("div");
-    this.cardTitleVisit = document.createElement("p");
-    this.cardDescription = document.createElement("p");
-    this.statusCardPriority = document.createElement("p");
-    this.buttonShowMoreInfo = document.createElement("button");
-  }
+        this.cardVisit = document.createElement("div");
+        this.fullNameElem = document.createElement("p");
+        this.buttonEditCard = document.createElement("button");
+        this.buttonDeleteCard = document.createElement("button");
+        this.cardDoctorElem = document.createElement("p");
+        this.cardInfoDescShowMore = document.createElement("div");
+        this.cardTitleVisit = document.createElement("p");
+        this.cardDescription = document.createElement("p");
+        this.statusCardPriority = document.createElement("p");
+        this.buttonShowMoreInfo = document.createElement("button");
+    }
 
-  createCardVisit() {
-    const cardWrapper = document.createElement("div");
-    const cardBtnWrapper = document.createElement("div");
-    const divPriority = document.createElement("div");
-    const divDescrip = document.createElement("div");
-    const divPurpose = document.createElement("div");
-    const divDoctor = document.createElement("div");
-    const divFullName = document.createElement("div");
+    createCardVisit() {
+        const cardWrapper = document.createElement("div");
+        const cardBtnWrapper = document.createElement("div");
+        const divPriority = document.createElement("div");
+        const divDescrip = document.createElement("div");
+        const divPurpose = document.createElement("div");
+        const divDoctor = document.createElement("div");
+        const divFullName = document.createElement("div");
 
-    this.cardVisit.classList.add("card");
-    this.cardVisit.classList.add("card__visit");
-    cardWrapper.classList.add("card__wraper");
-    this.fullNameElem.classList.add("card__name-title");
-    cardBtnWrapper.classList.add("card__btn");
-    this.buttonEditCard.classList.add("btn__edit-card");
-    this.buttonDeleteCard.classList.add("btn-close");
-    this.cardDoctorElem.classList.add("card__doctor");
-    this.cardInfoDescShowMore.classList.add("card__info");
-    this.cardInfoDescShowMore.classList.add("hide__card");
-    this.cardTitleVisit.classList.add("card__priority");
-    this.cardDescription.classList.add("card__description");
-    this.statusCardPriority.classList.add("card__priority");
-    this.buttonShowMoreInfo.classList.add("btn__show-more");
+        this.cardVisit.classList.add("card");
+        this.cardVisit.classList.add("card__visit");
+        cardWrapper.classList.add("card__wraper");
+        this.fullNameElem.classList.add("card__name-title");
+        cardBtnWrapper.classList.add("card__btn");
+        this.buttonEditCard.classList.add("btn__edit-card");
+        this.buttonDeleteCard.classList.add("btn-close");
+        this.cardDoctorElem.classList.add("card__doctor");
+        this.cardInfoDescShowMore.classList.add("card__info");
+        this.cardInfoDescShowMore.classList.add("hide__card");
+        this.cardTitleVisit.classList.add("card__purpose");
+        this.cardDescription.classList.add("card__description");
+        this.statusCardPriority.classList.add("card__priority");
+        this.buttonShowMoreInfo.classList.add("btn__show-more");
 
-    this.cardVisit.setAttribute("id", `${this.id}`);
-    this.buttonEditCard.setAttribute("type", "button");
-    this.buttonDeleteCard.setAttribute("type", "button");
-    this.buttonDeleteCard.setAttribute("aria-label", "Close");
-    this.cardInfoDescShowMore.setAttribute("data-show-more", "true");
+        this.cardVisit.setAttribute("id", `${this.id}`);
+        this.buttonEditCard.setAttribute("type", "button");
+        this.buttonDeleteCard.setAttribute("type", "button");
+        this.buttonDeleteCard.setAttribute("aria-label", "Close");
+        this.cardInfoDescShowMore.setAttribute("data-show-more", "true");
 
-    this.buttonShowMoreInfo.innerText = "Show more";
+        this.buttonShowMoreInfo.innerText = "Show more";
 
-    this.buttonEditCard.insertAdjacentHTML(
-      "beforeend",
-      `
+        this.buttonEditCard.insertAdjacentHTML(
+            "beforeend",
+            `
     <svg
         xmlns="http://www.w3.org/2000/svg"
         class="card__icon-edit"
@@ -80,86 +80,86 @@ class Visit {
         />
       </svg>
     `
-    );
+        );
 
-    divFullName.insertAdjacentHTML(
-      "beforeend",
-      `<h5 class="card__name-section">Full Name:</h5>`
-    );
-    divFullName.append(this.fullNameElem);
+        divFullName.insertAdjacentHTML(
+            "beforeend",
+            `<h5 class="card__name-section">Full Name:</h5>`
+        );
+        divFullName.append(this.fullNameElem);
 
-    divDoctor.insertAdjacentHTML(
-      "beforeend",
-      `<h5 class="card__name-section">Doctor:</h5>`
-    );
-    divDoctor.append(this.cardDoctorElem);
+        divDoctor.insertAdjacentHTML(
+            "beforeend",
+            `<h5 class="card__name-section">Doctor:</h5>`
+        );
+        divDoctor.append(this.cardDoctorElem);
 
-    divPurpose.insertAdjacentHTML(
-      "beforeend",
-      `<h5 class="card__name-section">Purpose of the visit:</h5>`
-    );
-    divPurpose.append(this.cardTitleVisit);
+        divPurpose.insertAdjacentHTML(
+            "beforeend",
+            `<h5 class="card__name-section">Purpose of the visit:</h5>`
+        );
+        divPurpose.append(this.cardTitleVisit);
 
-    divDescrip.insertAdjacentHTML(
-      "beforeend",
-      `<h5 class="card__name-section">Description-visit:</h5>`
-    );
-    divDescrip.append(this.cardDescription);
+        divDescrip.insertAdjacentHTML(
+            "beforeend",
+            `<h5 class="card__name-section">Description-visit:</h5>`
+        );
+        divDescrip.append(this.cardDescription);
 
-    divPriority.insertAdjacentHTML(
-      "beforeend",
-      `<h5 class="card__name-section">Priority:</h5>`
-    );
-    divPriority.append(this.statusCardPriority);
+        divPriority.insertAdjacentHTML(
+            "beforeend",
+            `<h5 class="card__name-section">Priority:</h5>`
+        );
+        divPriority.append(this.statusCardPriority);
 
-    this.cardVisit.append(
-      cardWrapper,
-      divFullName,
-      divDoctor,
-      this.cardInfoDescShowMore,
-      this.buttonShowMoreInfo
-    );
-    cardWrapper.append(cardBtnWrapper);
-    cardBtnWrapper.append(this.buttonEditCard, this.buttonDeleteCard);
-    this.cardInfoDescShowMore.append(divPurpose, divDescrip, divPriority);
-  }
-
-  showAndHideInfoText() {
-    if (this.cardInfoDescShowMore.dataset.showMore === "true") {
-      this.cardInfoDescShowMore.classList.remove("hide__card");
-      this.cardInfoDescShowMore.dataset.showMore = false;
-      this.buttonShowMoreInfo.innerText = "Hide description";
-    } else {
-      this.cardInfoDescShowMore.classList.add("hide__card");
-      this.cardInfoDescShowMore.dataset.showMore = true;
-      this.buttonShowMoreInfo.innerText = "Show more";
+        this.cardVisit.append(
+            cardWrapper,
+            divFullName,
+            divDoctor,
+            this.cardInfoDescShowMore,
+            this.buttonShowMoreInfo
+        );
+        cardWrapper.append(cardBtnWrapper);
+        cardBtnWrapper.append(this.buttonEditCard, this.buttonDeleteCard);
+        this.cardInfoDescShowMore.append(divPurpose, divDescrip, divPriority);
     }
-  }
 
-  render(container) {
-    this.createCardVisit();
+    showAndHideInfoText() {
+        if (this.cardInfoDescShowMore.dataset.showMore === "true") {
+            this.cardInfoDescShowMore.classList.remove("hide__card");
+            this.cardInfoDescShowMore.dataset.showMore = false;
+            this.buttonShowMoreInfo.innerText = "Hide description";
+        } else {
+            this.cardInfoDescShowMore.classList.add("hide__card");
+            this.cardInfoDescShowMore.dataset.showMore = true;
+            this.buttonShowMoreInfo.innerText = "Show more";
+        }
+    }
 
-    this.fullNameElem.innerText = this.fullName;
-    this.cardDoctorElem.innerText = this.doctor;
-    this.cardTitleVisit.innerText = this.title;
-    this.cardDescription.innerText = this.description;
-    this.statusCardPriority.innerText = this.priority;
+    render(container) {
+        this.createCardVisit();
 
-    container.append(this.cardVisit);
+        this.fullNameElem.innerText = this.fullName;
+        this.cardDoctorElem.innerText = this.doctor;
+        this.cardTitleVisit.innerText = this.title;
+        this.cardDescription.innerText = this.description;
+        this.statusCardPriority.innerText = this.priority;
 
-    this.buttonShowMoreInfo.addEventListener(
-      "click",
-      this.showAndHideInfoText.bind(this)
-    );
+        container.append(this.cardVisit);
 
-    this.buttonDeleteCard.addEventListener("click", () => {
-      this.deletFunction(this.id);
-    });
+        this.buttonShowMoreInfo.addEventListener(
+            "click",
+            this.showAndHideInfoText.bind(this)
+        );
 
-    this.buttonEditCard.addEventListener("click", () => {
-      this.editCardVisitFn(this.id);
-    });
-  }
+        this.buttonDeleteCard.addEventListener("click", () => {
+            this.deletFunction(this.id);
+        });
+
+        this.buttonEditCard.addEventListener("click", () => {
+            this.editCardVisitFn(this.id);
+        });
+    }
 }
 
 export default Visit;
