@@ -1,5 +1,7 @@
 import { getAllCards } from "../api/getAllCards.js";
 import VisitCardiologist from "../classes/VisitCardiologist.js";
+import VisitDentist from "../classes/VisitDentist.js";
+import VisitTherapist from "../classes/VisitTherapist.js";
 import { deleteCardVisit } from "./deleteCardVisit.js";
 import { editCardVisitFn } from "./editCardVisit.js";
 import { removeBtnLogIngAndAddCreatVisitBtn } from "./removeBtnLogingAndAddCreatVisitBtn.js";
@@ -24,6 +26,32 @@ export async function showAllCards() {
             elem.bodyMassIndex,
             elem.cardiovascularSystem,
             elem.age
+          ).render(containerCards);
+        }
+        if (elem.doctor === "dentist") {
+          new VisitDentist(
+            deleteCardVisit,
+            editCardVisitFn,
+            elem.id,
+            elem.purposeTitle,
+            elem.fullName,
+            elem.doctor,
+            elem.priority,
+            elem.description,
+            elem.dataLastVisit
+          ).render(containerCards);
+        }
+        if (elem.doctor === "therapist") {
+          new VisitTherapist(
+            deleteCardVisit,
+            editCardVisitFn,
+            elem.id,
+            elem.purposeTitle,
+            elem.fullName,
+            elem.doctor,
+            elem.priority,
+            elem.description,
+            elem.ageUser
           ).render(containerCards);
         }
       });

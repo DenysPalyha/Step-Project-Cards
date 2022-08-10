@@ -1,5 +1,6 @@
 import Modal from "./Modal.js";
 import { deleteCardVisitApi } from "../api/deleteCardVisitApi.js";
+import { containerCards } from "../layout/cardVisitContainer.js";
 
 class CloseCardsModale extends Modal {
   constructor(id) {
@@ -45,6 +46,12 @@ class CloseCardsModale extends Modal {
       if (status === 200) {
         const elemForDelet = document.getElementById(this.id);
         elemForDelet.remove();
+        const allCards = document.querySelectorAll(".card__visit");
+        const arrAllCards = [...allCards];
+        if (arrAllCards.length === 0) {
+          containerCards.innerHTML =
+            "<div class='info__string'><h2 class='info__string-heading'>No items have been added</h2></div>";
+        }
         this.closeModal();
       }
     });
