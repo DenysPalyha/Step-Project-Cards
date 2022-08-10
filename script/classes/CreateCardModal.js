@@ -68,9 +68,9 @@ class CreateCardModal {
 
     this.urgencyPatient.setAttribute("name", "urgency");
     this.chooseUrgency.setAttribute("value", "");
-    this.emergencyUrgency.setAttribute("value", "emergency");
-    this.priorityUrgency.setAttribute("value", "priority");
-    this.regularUrgency.setAttribute("value", "regular");
+    this.emergencyUrgency.setAttribute("value", "High");
+    this.priorityUrgency.setAttribute("value", "Normal");
+    this.regularUrgency.setAttribute("value", "Low");
 
     this.createCardModalForm.append(
       this.btnCloseCreateCardModal,
@@ -95,9 +95,9 @@ class CreateCardModal {
     );
 
     this.chooseUrgency.innerText = "Choose urgency";
-    this.emergencyUrgency.innerText = "Emergency";
-    this.priorityUrgency.innerText = "Priority";
-    this.regularUrgency.innerText = "Regular";
+    this.emergencyUrgency.innerText = "High";
+    this.priorityUrgency.innerText = "Normal";
+    this.regularUrgency.innerText = "Low";
 
     this.optionAllDoctors.innerText = "Choose doctor";
     this.optionCardiologist.innerText = "Cardiologist";
