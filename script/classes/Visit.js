@@ -19,7 +19,9 @@ class Visit {
     this.priority = priority;
     this.deletFunction = deletFunction;
     this.editCardVisitFn = editCardVisitFn;
+    this.visitStatus = "Open";
 
+    this.visitStatusElem = document.createElement("h3");
     this.cardVisit = document.createElement("div");
     this.fullNameElem = document.createElement("p");
     this.buttonEditCard = document.createElement("button");
@@ -41,6 +43,7 @@ class Visit {
     const divDoctor = document.createElement("div");
     const divFullName = document.createElement("div");
 
+    this.visitStatusElem.classList.add("card__visit-status");
     this.cardVisit.classList.add("card");
     this.cardVisit.classList.add("card__visit");
     cardWrapper.classList.add("card__wraper");
@@ -63,6 +66,8 @@ class Visit {
     this.cardInfoDescShowMore.setAttribute("data-show-more", "true");
 
     this.buttonShowMoreInfo.innerText = "Show more";
+
+    this.visitStatusElem.innerText = this.visitStatus;
 
     this.buttonEditCard.insertAdjacentHTML(
       "beforeend",
@@ -119,7 +124,7 @@ class Visit {
       this.cardInfoDescShowMore,
       this.buttonShowMoreInfo
     );
-    cardWrapper.append(cardBtnWrapper);
+    cardWrapper.append(this.visitStatusElem, cardBtnWrapper);
     cardBtnWrapper.append(this.buttonEditCard, this.buttonDeleteCard);
     this.cardInfoDescShowMore.append(divPurpose, divDescrip, divPriority);
   }
