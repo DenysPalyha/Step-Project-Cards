@@ -55,6 +55,10 @@
     width: inherit;
 }
 
+.modal_high {
+    display: none;
+}
+
 input {
     position: relative;
     width: 90%;
