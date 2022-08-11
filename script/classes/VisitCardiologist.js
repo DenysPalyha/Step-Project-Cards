@@ -5,6 +5,7 @@ class VisitCardiologist extends Visit {
     constructor(
         deletFunction,
         editCardVisitFn,
+        visitStatus,
         id,
         title,
         fullName,
@@ -19,6 +20,7 @@ class VisitCardiologist extends Visit {
         super(
             deletFunction,
             editCardVisitFn,
+            visitStatus,
             id,
             title,
             fullName,

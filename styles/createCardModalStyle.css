@@ -97,3 +97,9 @@ select {
     cursor: pointer;
     z-index: 1;
 }
+
+.div_open_urgency {
+    display: flex;
+    flex-direction: row;
+    width: 90%;
+}
