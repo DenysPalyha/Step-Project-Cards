@@ -17,6 +17,7 @@ class CreateCardModal {
         this.optionCardiologist = document.createElement("option");
         this.optionDentist = document.createElement("option");
         this.optionTherapist = document.createElement("option");
+        this.divOpenUrgency = document.createElement("div");
 
         this.btnCreateVisiteCardio = document.createElement("button");
         this.btnCreateVisiteDentist = document.createElement("button");
@@ -34,7 +35,10 @@ class CreateCardModal {
         this.emergencyUrgency = document.createElement("option");
         this.priorityUrgency = document.createElement("option");
         this.regularUrgency = document.createElement("option");
-
+        // ------------------------
+        this.selectOpen = document.createElement("select");
+        this.optionOpen = document.createElement("option");
+        // -----------------------------
         this.cardiologistBloodPressure = document.createElement("input");
         this.cardiologistBodyMassIndex = document.createElement("input");
         this.cardiologistTransferredDiseases = document.createElement("input");
@@ -51,6 +55,8 @@ class CreateCardModal {
         this.inputUserFullName.classList.add("input_user_full_name");
         this.visitPurpose.classList.add("visit_purpose");
         this.visitDescription.classList.add("visit_description");
+
+        this.divOpenUrgency.classList.add("div_open_urgency")
 
         this.visitPurpose.setAttribute("type", "text");
         this.visitPurpose.setAttribute("placeholder", "Visit Purpose");
@@ -71,15 +77,23 @@ class CreateCardModal {
         this.emergencyUrgency.setAttribute("value", "High");
         this.priorityUrgency.setAttribute("value", "Normal");
         this.regularUrgency.setAttribute("value", "Low");
-
+        // --------------------
+        this.selectOpen.setAttribute("name", "open");
+        this.optionOpen.setAttribute("value", "Open");
+        // ------------------
         this.createCardModalForm.append(
             this.btnCloseCreateCardModal,
             this.inputUserFullName,
             this.typeDoctors,
             this.visitPurpose,
             this.visitDescription,
-            this.urgencyPatient
+            this.divOpenUrgency
         );
+        this.divOpenUrgency.append(
+            this.urgencyPatient,
+            this.selectOpen
+        )
+
         this.typeDoctors.append(
             this.optionAllDoctors,
             this.optionCardiologist,
@@ -94,6 +108,11 @@ class CreateCardModal {
             this.regularUrgency
         );
 
+        // ----
+        this.selectOpen.append(this.optionOpen)
+
+        this.optionOpen.innerText = "Open";
+        // ----
         this.chooseUrgency.innerText = "Choose urgency";
         this.emergencyUrgency.innerText = "High";
         this.priorityUrgency.innerText = "Normal";
@@ -112,6 +131,8 @@ class CreateCardModal {
             "click",
             this.closeCardForm.bind(this)
         );
+
+        this.selectOpen.disabled = 'true';
     }
 
     cardiologistCreateModal() {
@@ -138,7 +159,7 @@ class CreateCardModal {
         this.cardiologistPatientAge.setAttribute("placeholder", "Patient Age");
         this.btnCreateVisiteCardio.setAttribute("type", "submit");
 
-        this.urgencyPatient.after(this.doctorsVisitListCardio);
+        this.divOpenUrgency.after(this.doctorsVisitListCardio);
         this.doctorsVisitListCardio.append(
             this.cardiologistBloodPressure,
             this.cardiologistBodyMassIndex,
@@ -153,6 +174,7 @@ class CreateCardModal {
         this.btnCreateVisiteCardio.addEventListener("click", async(e) => {
             e.preventDefault();
             const data = await createCard({
+                visitStatus: this.selectOpen.value,
                 fullName: this.inputUserFullName.value,
                 doctor: this.typeDoctors.value,
                 purposeTitle: this.visitPurpose.value,
@@ -167,6 +189,7 @@ class CreateCardModal {
             new VisitCardiologist(
                 deleteCardVisit,
                 editCardVisitFn,
+                data.visitStatus,
                 data.id,
                 data.purposeTitle,
                 data.fullName,
@@ -195,7 +218,7 @@ class CreateCardModal {
         );
         this.btnCreateVisiteDentist.setAttribute("type", "submit");
 
-        this.urgencyPatient.after(this.doctorsVisitListDentist);
+        this.divOpenUrgency.after(this.doctorsVisitListDentist);
         this.doctorsVisitListDentist.append(
             this.dentistdateOfLastVisit,
             this.btnCreateVisiteDentist
@@ -206,6 +229,7 @@ class CreateCardModal {
         this.btnCreateVisiteDentist.addEventListener("click", async(e) => {
             e.preventDefault();
             const data = await createCard({
+                visitStatus: this.selectOpen.value,
                 fullName: this.inputUserFullName.value,
                 doctor: this.typeDoctors.value,
                 purposeTitle: this.visitPurpose.value,
@@ -217,13 +241,14 @@ class CreateCardModal {
             new VisitDentist(
                 deleteCardVisit,
                 editCardVisitFn,
+                data.visitStatus,
                 data.id,
                 data.purposeTitle,
                 data.fullName,
                 data.doctor,
                 data.priority,
                 data.description,
-                data.LastVisit
+                data.dataLastVisit
             ).render(containerCards);
             this.closeCardForm();
             document.body.style.overflow = '';
@@ -235,7 +260,7 @@ class CreateCardModal {
         this.btnCreateVisiteTherapist.classList.add("btn");
         this.btnCreateVisiteTherapist.classList.add("btn-success");
 
-        this.urgencyPatient.after(this.doctorsVisitListTherapist);
+        this.divOpenUrgency.after(this.doctorsVisitListTherapist);
         this.doctorsVisitListTherapist.append(
             this.therapistPatientAge,
             this.btnCreateVisiteTherapist
@@ -251,6 +276,7 @@ class CreateCardModal {
         this.btnCreateVisiteTherapist.addEventListener("click", async(e) => {
             e.preventDefault();
             const data = await createCard({
+                visitStatus: this.selectOpen.value,
                 fullName: this.inputUserFullName.value,
                 doctor: this.typeDoctors.value,
                 purposeTitle: this.visitPurpose.value,
@@ -262,6 +288,7 @@ class CreateCardModal {
             new VisitTherapist(
                 deleteCardVisit,
                 editCardVisitFn,
+                data.visitStatus,
                 data.id,
                 data.purposeTitle,
                 data.fullName,
