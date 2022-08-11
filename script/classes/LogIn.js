@@ -9,6 +9,9 @@ class LogIn extends Modal {
     this.inputEmail = document.createElement("input");
     this.inputPassword = document.createElement("input");
     this.btnComeIn = document.createElement("button");
+
+    this.resWalidEmeil = "";
+    this.resWalidPssword = "";
   }
 
   createModal() {
@@ -55,41 +58,49 @@ class LogIn extends Modal {
 
     setTimeout(() => {
       divWarn.remove();
-    }, 2000);
+    }, 2500);
+  }
+
+  validateFormLogIn() {
+    const emailPattern = /^[a-zA-Z0-3._-]+@[a-zA-Z0-3.-]+\.[a-zA-Z]{2,4}$/;
+    this.resWalidEmeil = emailPattern.test(this.inputEmail.value);
+
+    const strongRegex = new RegExp("^(?=.{4,})");
+    this.resWalidPssword = strongRegex.test(this.inputPassword.value);
   }
 
   render() {
     super.render();
 
+    this.inputEmail.addEventListener("input", () => {
+      this.validateFormLogIn();
+      if (this.resWalidEmeil === false) {
+        this.inputEmail.classList.add("is-invalid");
+      }
+      if (this.resWalidEmeil) {
+        this.inputEmail.classList.remove("is-invalid");
+        this.inputEmail.classList.add("is-valid");
+      }
+    });
+    this.inputPassword.addEventListener("input", () => {
+      this.validateFormLogIn();
+      if (this.resWalidPssword === false) {
+        this.inputPassword.classList.add("is-invalid");
+      }
+      if (this.resWalidPssword) {
+        this.inputPassword.classList.remove("is-invalid");
+        this.inputPassword.classList.add("is-valid");
+      }
+    });
+
     this.btnComeIn.addEventListener("click", (e) => {
       e.preventDefault();
+      this.validateFormLogIn();
 
-      const emailPattern = /^[a-zA-Z0-3._-]+@[a-zA-Z0-3.-]+\.[a-zA-Z]{2,4}$/;
-      const resWalidEmeil = emailPattern.test(this.inputEmail.value);
-
-      const strongRegex = new RegExp("^(?=.{3,})");
-      const resWalidPssword = strongRegex.test(this.inputPassword.value);
-
-      if (resWalidEmeil && resWalidPssword) {
-        this.inputEmail.classList.remove("not-valid-log-in");
+      if (this.resWalidEmeil && this.resWalidPssword) {
+        this.inputEmail.classList.remove("is-invalid");
         logInUser(this.inputEmail.value, this.inputPassword.value);
         this.closeModal();
-      }
-
-      if (resWalidEmeil === false) {
-        this.inputEmail.classList.add("not-valid-log-in");
-        this.warnNotEmail();
-      }
-      if (resWalidPssword === false) {
-        this.inputPassword.classList.add("not-valid-log-in");
-        this.warnNotEmail();
-      }
-
-      if (resWalidEmeil) {
-        this.inputEmail.classList.remove("not-valid-log-in");
-      }
-      if (resWalidPssword) {
-        this.inputPassword.classList.remove("not-valid-log-in");
       }
     });
   }
