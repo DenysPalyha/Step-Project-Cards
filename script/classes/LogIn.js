@@ -102,6 +102,13 @@ class LogIn extends Modal {
         logInUser(this.inputEmail.value, this.inputPassword.value);
         this.closeModal();
       }
+      if (this.resWalidEmeil === false) {
+        this.inputEmail.classList.add("is-invalid");
+      }
+
+      if (this.resWalidPssword === false) {
+        this.inputPassword.classList.add("is-invalid");
+      }
     });
   }
 }
