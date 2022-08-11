@@ -16,6 +16,7 @@ export async function showAllCards() {
           new VisitCardiologist(
             deleteCardVisit,
             editCardVisitFn,
+            elem.visitStatus,
             elem.id,
             elem.purposeTitle,
             elem.fullName,
@@ -32,6 +33,7 @@ export async function showAllCards() {
           new VisitDentist(
             deleteCardVisit,
             editCardVisitFn,
+            elem.visitStatus,
             elem.id,
             elem.purposeTitle,
             elem.fullName,
@@ -45,6 +47,7 @@ export async function showAllCards() {
           new VisitTherapist(
             deleteCardVisit,
             editCardVisitFn,
+            elem.visitStatus,
             elem.id,
             elem.purposeTitle,
             elem.fullName,
