@@ -64,10 +64,10 @@ class LogIn extends Modal {
     this.btnComeIn.addEventListener("click", (e) => {
       e.preventDefault();
 
-      const emailPattern = /^[a-zA-Z0-9._-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,4}$/;
+      const emailPattern = /^[a-zA-Z0-3._-]+@[a-zA-Z0-3.-]+\.[a-zA-Z]{2,4}$/;
       const resWalidEmeil = emailPattern.test(this.inputEmail.value);
 
-      const strongRegex = new RegExp("^(?=.*[0-9])(?=.{3,})");
+      const strongRegex = new RegExp("^(?=.{3,})");
       const resWalidPssword = strongRegex.test(this.inputPassword.value);
 
       if (resWalidEmeil && resWalidPssword) {
