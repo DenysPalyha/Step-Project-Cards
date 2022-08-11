@@ -104,10 +104,12 @@ class LogIn extends Modal {
       }
       if (this.resWalidEmeil === false) {
         this.inputEmail.classList.add("is-invalid");
+        this.warnNotEmail();
       }
 
       if (this.resWalidPssword === false) {
         this.inputPassword.classList.add("is-invalid");
+        this.warnNotEmail();
       }
     });
   }
