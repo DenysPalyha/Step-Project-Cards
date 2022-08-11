@@ -317,20 +317,24 @@ class CreateCardModal {
             // console.log(typeDoctor);
             if (typeDoctor === "cardiologist") {
                 this.doctorsVisitListCardio.classList.toggle("modal_show");
-            } else if (typeDoctor === "dentist") {
+            }
+            if (typeDoctor === "dentist") {
                 this.doctorsVisitListDentist.classList.toggle("modal_show");
-            } else if (typeDoctor === "therapist") {
+            }
+            if (typeDoctor === "therapist") {
                 this.doctorsVisitListTherapist.classList.toggle("modal_show");
             }
+
         });
     }
 
     validModal() {
         this.createCardModalForm.addEventListener("click", () => {
             if (
-                this.inputUserFullName.value === "" ||
-                this.visitPurpose.value === "" ||
-                this.visitDescription.value === ""
+                (this.inputUserFullName.value === "") ||
+                (this.visitPurpose.value === "") ||
+                (this.visitDescription.value === "") ||
+                (this.urgencyPatient.value === "")
             ) {
                 this.btnCreateVisiteCardio.disabled = true;
                 this.btnCreateVisiteDentist.disabled = true;
@@ -340,9 +344,11 @@ class CreateCardModal {
                 this.btnCreateVisiteDentist.disabled = false;
                 this.btnCreateVisiteTherapist.disabled = false;
             }
+
+            console.log(this.inputUserFullName.value);
         });
 
-        this.inputUserFullName.addEventListener("blur", () => {
+        this.createCardModalForm.addEventListener("click", () => {
             let value = this.inputUserFullName.value;
             if (value === "") {
                 this.inputUserFullName.classList.add("invalid");
@@ -354,7 +360,7 @@ class CreateCardModal {
             }
         });
 
-        this.visitPurpose.addEventListener("blur", () => {
+        this.createCardModalForm.addEventListener("click", () => {
             let value = this.visitPurpose.value;
             if (value === "") {
                 this.visitPurpose.classList.add("invalid");
@@ -366,7 +372,7 @@ class CreateCardModal {
             }
         });
 
-        this.visitDescription.addEventListener("blur", () => {
+        this.createCardModalForm.addEventListener("click", () => {
             let value = this.visitDescription.value;
             if (value === "") {
                 this.visitDescription.classList.add("invalid");
@@ -377,7 +383,8 @@ class CreateCardModal {
                 this.typeDoctors.disabled = false;
             }
         });
-        this.urgencyPatient.addEventListener("blur", () => {
+
+        this.createCardModalForm.addEventListener("click", () => {
             let value = this.urgencyPatient.value;
             console.log(value);
             if (value === "") {
