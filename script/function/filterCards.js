@@ -15,6 +15,7 @@ const renderFiltered = function (elem) {
     new VisitCardiologist(
       deleteCardVisit,
       editCardVisitFn,
+      elem.visitStatus,
       elem.id,
       elem.purposeTitle,
       elem.fullName,
@@ -31,6 +32,7 @@ const renderFiltered = function (elem) {
     new VisitDentist(
       deleteCardVisit,
       editCardVisitFn,
+      elem.visitStatus,
       elem.id,
       elem.purposeTitle,
       elem.fullName,
@@ -44,6 +46,7 @@ const renderFiltered = function (elem) {
     new VisitTherapist(
       deleteCardVisit,
       editCardVisitFn,
+      elem.visitStatus,
       elem.id,
       elem.purposeTitle,
       elem.fullName,
@@ -61,13 +64,14 @@ function filter() {
   getAllCards().then(({ data }) => {
     data.forEach((elem) => {
       let tValue = filterTitleField.value;
-      // let sVlaue = filterStatusField.value;
+      let sVlaue = filterStatusField.value;
       let pValue = filterPriorField.value;
 
       if (
         (tValue === "" ||
           elem.purposeTitle.toLowerCase().includes(tValue.toLowerCase()) ||
           elem.description.toLowerCase().includes(tValue.toLowerCase())) &&
+        (sVlaue === "ALL" || elem.visitStatus === sVlaue) &&
         (pValue == "ALL" || elem.priority === pValue)
       ) {
         renderFiltered(elem);
@@ -80,7 +84,10 @@ const filterCards = function () {
   filterPriorField.addEventListener("change", () => {
     filter();
   });
-  filterTitleField.addEventListener("change", () => {
+  filterTitleField.addEventListener("input", () => {
+    filter();
+  });
+  filterStatusField.addEventListener("change", () => {
     filter();
   });
 };
