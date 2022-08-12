@@ -1,59 +1,60 @@
 import Visit from "./Visit.js";
 
 class VisitDentist extends Visit {
-    constructor(
-        deleteCardVisit,
-        editCardVisitFn,
-        visitStatus,
-        id,
-        title,
-        fullName,
-        doctor,
-        priority,
-        description,
-        dataLastVisit
-    ) {
-        super(
-            deleteCardVisit,
-            editCardVisitFn,
-            visitStatus,
-            id,
-            title,
-            fullName,
-            doctor,
-            priority,
-            description
-        );
-        this.dataLastVisit = dataLastVisit;
+  constructor(
+    deleteCardVisit,
+    editCardVisitFn,
+    visitStatus,
+    id,
+    title,
+    fullName,
+    doctor,
+    priority,
+    description,
+    dataLastVisit
+  ) {
+    super(
+      deleteCardVisit,
+      editCardVisitFn,
+      visitStatus,
+      id,
+      title,
+      fullName,
+      doctor,
+      priority,
+      description
+    );
 
-        if (this.dataLastVisit === undefined || this.dataLastVisit === "") {
-            this.dataLastVisit = "-";
-        }
+    this.dataLastVisit = dataLastVisit;
 
-        this.visitDentist = document.createElement("p");
+    if (this.dataLastVisit === undefined || this.dataLastVisit === "") {
+      this.dataLastVisit = "-";
     }
 
-    createCardVisit() {
-        super.createCardVisit();
+    this.visitDentist = document.createElement("p");
+  }
 
-        const divDentist = document.createElement("div");
+  createCardVisit() {
+    super.createCardVisit();
 
-        this.visitDentist.classList.add("card__description");
+    const divDentist = document.createElement("div");
 
-        divDentist.insertAdjacentHTML(
-            "beforeend",
-            `<h5 class="card__name-section">Date of last visit:</h5>`
-        );
-        divDentist.append(this.visitDentist);
+    this.visitDentist.classList.add("card__description");
 
-        this.cardInfoDescShowMore.append(divDentist);
-    }
+    divDentist.insertAdjacentHTML(
+      "beforeend",
+      `<h5 class="card__name-section">Date of last visit:</h5>`
+    );
+    divDentist.append(this.visitDentist);
 
-    render(container) {
-        super.render(container);
+    this.cardInfoDescShowMore.append(divDentist);
+  }
 
-        this.visitDentist.innerText = this.dataLastVisit;
-    }
+  render(container) {
+    super.render(container);
+
+    this.visitDentist.innerText = this.dataLastVisit;
+  }
 }
 
 export default VisitDentist;

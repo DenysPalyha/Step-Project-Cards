@@ -12,7 +12,7 @@ export async function showAllCards() {
   if (status === 200) {
     if (data.length !== 0) {
       data.forEach((elem) => {
-        if (elem.doctor === "cardiologist") {
+        if (elem.doctor.toLowerCase() === "cardiologist") {
           new VisitCardiologist(
             deleteCardVisit,
             editCardVisitFn,
@@ -29,7 +29,7 @@ export async function showAllCards() {
             elem.age
           ).render(containerCards);
         }
-        if (elem.doctor === "dentist") {
+        if (elem.doctor.toLowerCase() === "dentist") {
           new VisitDentist(
             deleteCardVisit,
             editCardVisitFn,
@@ -43,7 +43,7 @@ export async function showAllCards() {
             elem.dataLastVisit
           ).render(containerCards);
         }
-        if (elem.doctor === "therapist") {
+        if (elem.doctor.toLowerCase() === "therapist") {
           new VisitTherapist(
             deleteCardVisit,
             editCardVisitFn,

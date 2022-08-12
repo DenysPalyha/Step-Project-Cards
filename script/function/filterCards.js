@@ -11,10 +11,11 @@ const filterStatusField = document.querySelector("#filter-status");
 const filterPriorField = document.querySelector("#filter-priority");
 
 const renderFiltered = function (elem) {
-  if (elem.doctor === "cardiologist") {
+  if (elem.doctor.toLowerCase() === "cardiologist") {
     new VisitCardiologist(
       deleteCardVisit,
       editCardVisitFn,
+      elem.visitStatus,
       elem.id,
       elem.purposeTitle,
       elem.fullName,
@@ -27,10 +28,11 @@ const renderFiltered = function (elem) {
       elem.age
     ).render(containerCards);
   }
-  if (elem.doctor === "dentist") {
+  if (elem.doctor.toLowerCase() === "dentist") {
     new VisitDentist(
       deleteCardVisit,
       editCardVisitFn,
+      elem.visitStatus,
       elem.id,
       elem.purposeTitle,
       elem.fullName,
@@ -40,10 +42,11 @@ const renderFiltered = function (elem) {
       elem.dataLastVisit
     ).render(containerCards);
   }
-  if (elem.doctor === "therapist") {
+  if (elem.doctor.toLowerCase() === "therapist") {
     new VisitTherapist(
       deleteCardVisit,
       editCardVisitFn,
+      elem.visitStatus,
       elem.id,
       elem.purposeTitle,
       elem.fullName,
