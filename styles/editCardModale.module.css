@@ -1,0 +1,78 @@
+.form-create-visit {
+  margin: 0 auto;
+  width: 400px;
+  background-color: rgb(150, 162, 172);
+}
+
+.modal__main-container-newbg {
+  border: 1px solid rgb(150, 162, 172);
+  background-color: rgb(150, 162, 172);
+}
+
+.modal__edit-card-visit {
+  margin-bottom: 5px;
+}
+
+.modal__header-tetle {
+  font-size: 16px;
+  color: #fff;
+}
+
+.modal__edit-card-visit-container {
+  padding: 10px;
+}
+
+.form-create-visit__lable {
+  margin: 0;
+  font-size: 12px;
+  /* color: #fff; */
+}
+
+.form-create-visit__input {
+  width: 400px;
+  font-size: 12px;
+  margin: 0 0 10px;
+}
+
+.form-create-visit__textarea {
+  width: 400px;
+  margin-bottom: 10px;
+  font-size: 12px;
+  resize: none;
+}
+
+.form-create-visit__select-doctor {
+  margin: 0 auto 10px;
+  font-size: 12px;
+  width: 400px;
+}
+
+.position__select {
+  display: flex;
+  justify-content: space-between;
+}
+
+.form-create-visit__options-urgency {
+  margin-bottom: 10px;
+  width: 180px;
+}
+
+.form-create-visit__select-ungency {
+  font-size: 12px;
+  margin: 0;
+}
+
+.form-create-visit__select-urgency {
+  width: 400px;
+  font-size: 12px;
+  margin: 0 auto 10px;
+}
+
+.form-create-visit__btn-send {
+  min-width: 100px;
+  margin-right: 90px;
+}
+
+.btn-modal__edit-card {
+  margin-right: 100px;
+}
