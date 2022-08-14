@@ -1,0 +1,17 @@
+@import url("./header.module.css");
+@import url("./filterFormStyle.css");
+@import url("./cardModal.module.css");
+@import url("./formLogInModal.module.css");
+@import url("./cardVisit.module.css");
+@import url("./createCardModalStyle.css");
+@import url("./editCardModale.module.css");
+
+html {
+  box-sizing: border-box;
+}
+
+*,
+*::before,
+*::after {
+  box-sizing: inherit;
+}
