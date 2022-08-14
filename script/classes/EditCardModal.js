@@ -85,7 +85,7 @@ class EditCardModal extends Modal {
 
   createModal() {
     super.createModal();
-    // this.writingAndCheckingVroperties();
+
     const lablePurpose = document.createElement("label");
     const lableFullName = document.createElement("label");
     const lableTextarea = document.createElement("label");
