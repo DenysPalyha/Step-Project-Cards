@@ -5,7 +5,7 @@ const editCardCardiologist = async (id, body) => {
     const newDateCardiologist = await instance.put(`${id}`, body);
     return newDateCardiologist;
   } catch (err) {
-    console.log(err);
+    console.warn(err);
   }
 };
 
@@ -14,7 +14,7 @@ const editCardDentist = async (id, body) => {
     const newDateDentist = await instance.put(`${id}`, body);
     return newDateDentist;
   } catch (err) {
-    console.log(err);
+    console.warn(err);
   }
 };
 
@@ -23,7 +23,7 @@ const editCardTherapist = async (id, body) => {
     const newDateTherapist = await instance.put(`${id}`, body);
     return newDateTherapist;
   } catch (err) {
-    console.log(err);
+    console.warn(err);
   }
 };
 

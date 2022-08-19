@@ -46,6 +46,7 @@ class CreateCardModal {
     this.therapistPatientAge = document.createElement("input");
     this.dentistdateOfLastVisit = document.createElement("input");
 
+
     this.validPurpose = "";
     this.validFullName = "";
     this.validDescription = "";
@@ -78,7 +79,10 @@ class CreateCardModal {
     this.optionTherapist.setAttribute("value", "therapist");
 
     this.urgencyPatient.setAttribute("name", "urgency");
+
     this.chooseUrgency.setAttribute("value", "Choose urgency");
+
+
     this.emergencyUrgency.setAttribute("value", "High");
     this.priorityUrgency.setAttribute("value", "Normal");
     this.regularUrgency.setAttribute("value", "Low");
@@ -189,6 +193,7 @@ class CreateCardModal {
     }
   }
 
+
   cardiologistCreateModal() {
     this.doctorsVisitListCardio.classList.add("doctors_visit_list");
     this.btnCreateVisiteCardio.classList.add("btn");
@@ -266,6 +271,7 @@ class CreateCardModal {
         this.closeCardForm();
         document.body.style.overflow = "";
       }
+
     });
   }
 
@@ -289,6 +295,7 @@ class CreateCardModal {
 
     this.btnCreateVisiteDentist.innerText = "CREATE VISIT";
     // ------------------------------------
+
 
     this.btnCreateVisiteDentist.addEventListener("click", async (e) => {
       e.preventDefault();
@@ -324,7 +331,7 @@ class CreateCardModal {
         ).render(containerCards);
         this.closeCardForm();
         document.body.style.overflow = "";
-      }
+      } 
     });
   }
 
@@ -381,6 +388,7 @@ class CreateCardModal {
         this.closeCardForm();
         document.body.style.overflow = "";
       }
+
     });
   }
 
@@ -393,12 +401,14 @@ class CreateCardModal {
     }, 500);
   }
 
+
   removeClassInvalid() {
     this.visitPurpose.classList.remove("invalid");
     this.inputUserFullName.classList.remove("invalid");
     this.visitDescription.classList.remove("invalid");
     this.urgencyPatient.classList.remove("invalid");
   }
+
 
   selectWraper() {
     this.typeDoctors.addEventListener("click", () => {
