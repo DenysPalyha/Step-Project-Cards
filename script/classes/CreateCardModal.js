@@ -45,6 +45,12 @@ class CreateCardModal {
     this.cardiologistPatientAge = document.createElement("input");
     this.therapistPatientAge = document.createElement("input");
     this.dentistdateOfLastVisit = document.createElement("input");
+
+
+    this.validPurpose = "";
+    this.validFullName = "";
+    this.validDescription = "";
+    this.validSelect = "";
   }
 
   createCardModal() {
@@ -73,7 +79,10 @@ class CreateCardModal {
     this.optionTherapist.setAttribute("value", "therapist");
 
     this.urgencyPatient.setAttribute("name", "urgency");
-    this.chooseUrgency.setAttribute("value", "");
+
+    this.chooseUrgency.setAttribute("value", "Choose urgency");
+
+
     this.emergencyUrgency.setAttribute("value", "High");
     this.priorityUrgency.setAttribute("value", "Normal");
     this.regularUrgency.setAttribute("value", "Low");
@@ -132,6 +141,59 @@ class CreateCardModal {
     this.selectOpen.disabled = "true";
   }
 
+  warnNotEmail(container = document.body) {
+    const divWarn = document.createElement("div");
+    divWarn.classList.add("alert");
+    divWarn.classList.add("alert-danger");
+    divWarn.classList.add("alert__dangers-email");
+    divWarn.setAttribute("role", "alert");
+    divWarn.innerText = "Please fill in the required fields!!!";
+    container.append(divWarn);
+
+    setTimeout(() => {
+      divWarn.remove();
+    }, 2000);
+  }
+
+  validateInput() {
+    const reg_pusto = new RegExp(/^[\s\S]{1,10}/);
+    this.validPurpose = reg_pusto.test(this.visitPurpose.value);
+    this.validFullName = reg_pusto.test(this.inputUserFullName.value);
+    this.validDescription = reg_pusto.test(this.visitDescription.value);
+    this.validSelect = this.urgencyPatient.value.includes("Choose urgency");
+
+    if (this.validPurpose === false) {
+      this.visitPurpose.classList.add("invalid");
+      this.warnNotEmail();
+    }
+    if (this.validFullName === false) {
+      this.inputUserFullName.classList.add("invalid");
+      this.warnNotEmail();
+    }
+    if (this.validDescription === false) {
+      this.visitDescription.classList.add("invalid");
+      this.warnNotEmail();
+    }
+    if (!this.validSelect === false) {
+      this.urgencyPatient.classList.add("invalid");
+      this.warnNotEmail();
+    }
+
+    if (this.validPurpose) {
+      this.visitPurpose.classList.remove("invalid");
+    }
+    if (this.validFullName) {
+      this.inputUserFullName.classList.remove("invalid");
+    }
+    if (this.validDescription) {
+      this.visitDescription.classList.remove("invalid");
+    }
+    if (!this.validSelect) {
+      this.urgencyPatient.classList.remove("invalid");
+    }
+  }
+
+
   cardiologistCreateModal() {
     this.doctorsVisitListCardio.classList.add("doctors_visit_list");
     this.btnCreateVisiteCardio.classList.add("btn");
@@ -170,36 +232,46 @@ class CreateCardModal {
     // ------------------------------------------------------------------------
     this.btnCreateVisiteCardio.addEventListener("click", async (e) => {
       e.preventDefault();
-      const data = await createCard({
-        visitStatus: this.selectOpen.value,
-        fullName: this.inputUserFullName.value,
-        doctor: this.typeDoctors.value,
-        purposeTitle: this.visitPurpose.value,
-        description: this.visitDescription.value,
-        priority: this.urgencyPatient.value,
-        normalPressure: this.cardiologistBloodPressure.value,
-        bodyMassIndex: this.cardiologistBodyMassIndex.value,
-        cardiovascularSystem: this.cardiologistTransferredDiseases.value,
-        age: this.cardiologistPatientAge.value,
-      });
+      this.validateInput();
 
-      new VisitCardiologist(
-        deleteCardVisit,
-        editCardVisitFn,
-        data.visitStatus,
-        data.id,
-        data.purposeTitle,
-        data.fullName,
-        data.doctor,
-        data.priority,
-        data.description,
-        data.normalPressure,
-        data.bodyMassIndex,
-        data.cardiovascularSystem,
-        data.age
-      ).render(containerCards);
-      this.closeCardForm();
-      document.body.style.overflow = "";
+      if (
+        this.validPurpose &&
+        this.validFullName &&
+        this.validDescription &&
+        !this.validSelect
+      ) {
+        const data = await createCard({
+          visitStatus: this.selectOpen.value,
+          fullName: this.inputUserFullName.value,
+          doctor: this.typeDoctors.value,
+          purposeTitle: this.visitPurpose.value,
+          description: this.visitDescription.value,
+          priority: this.urgencyPatient.value,
+          normalPressure: this.cardiologistBloodPressure.value,
+          bodyMassIndex: this.cardiologistBodyMassIndex.value,
+          cardiovascularSystem: this.cardiologistTransferredDiseases.value,
+          age: this.cardiologistPatientAge.value,
+        });
+
+        new VisitCardiologist(
+          deleteCardVisit,
+          editCardVisitFn,
+          data.visitStatus,
+          data.id,
+          data.purposeTitle,
+          data.fullName,
+          data.doctor,
+          data.priority,
+          data.description,
+          data.normalPressure,
+          data.bodyMassIndex,
+          data.cardiovascularSystem,
+          data.age
+        ).render(containerCards);
+        this.closeCardForm();
+        document.body.style.overflow = "";
+      }
+
     });
   }
 
@@ -223,32 +295,43 @@ class CreateCardModal {
 
     this.btnCreateVisiteDentist.innerText = "CREATE VISIT";
     // ------------------------------------
+
+
     this.btnCreateVisiteDentist.addEventListener("click", async (e) => {
       e.preventDefault();
-      const data = await createCard({
-        visitStatus: this.selectOpen.value,
-        fullName: this.inputUserFullName.value,
-        doctor: this.typeDoctors.value,
-        purposeTitle: this.visitPurpose.value,
-        description: this.visitDescription.value,
-        priority: this.urgencyPatient.value,
-        dataLastVisit: this.dentistdateOfLastVisit.value,
-      });
+      this.validateInput();
 
-      new VisitDentist(
-        deleteCardVisit,
-        editCardVisitFn,
-        data.visitStatus,
-        data.id,
-        data.purposeTitle,
-        data.fullName,
-        data.doctor,
-        data.priority,
-        data.description,
-        data.dataLastVisit
-      ).render(containerCards);
-      this.closeCardForm();
-      document.body.style.overflow = "";
+      if (
+        this.validPurpose &&
+        this.validFullName &&
+        this.validDescription &&
+        !this.validSelect
+      ) {
+        const data = await createCard({
+          visitStatus: this.selectOpen.value,
+          fullName: this.inputUserFullName.value,
+          doctor: this.typeDoctors.value,
+          purposeTitle: this.visitPurpose.value,
+          description: this.visitDescription.value,
+          priority: this.urgencyPatient.value,
+          dataLastVisit: this.dentistdateOfLastVisit.value,
+        });
+
+        new VisitDentist(
+          deleteCardVisit,
+          editCardVisitFn,
+          data.visitStatus,
+          data.id,
+          data.purposeTitle,
+          data.fullName,
+          data.doctor,
+          data.priority,
+          data.description,
+          data.dataLastVisit
+        ).render(containerCards);
+        this.closeCardForm();
+        document.body.style.overflow = "";
+      } 
     });
   }
 
@@ -272,30 +355,40 @@ class CreateCardModal {
     // ------------------------------------------------------------
     this.btnCreateVisiteTherapist.addEventListener("click", async (e) => {
       e.preventDefault();
-      const data = await createCard({
-        visitStatus: this.selectOpen.value,
-        fullName: this.inputUserFullName.value,
-        doctor: this.typeDoctors.value,
-        purposeTitle: this.visitPurpose.value,
-        description: this.visitDescription.value,
-        priority: this.urgencyPatient.value,
-        ageUser: this.therapistPatientAge.value,
-      });
+      this.validateInput();
 
-      new VisitTherapist(
-        deleteCardVisit,
-        editCardVisitFn,
-        data.visitStatus,
-        data.id,
-        data.purposeTitle,
-        data.fullName,
-        data.doctor,
-        data.priority,
-        data.description,
-        data.ageUser
-      ).render(containerCards);
-      this.closeCardForm();
-      document.body.style.overflow = "";
+      if (
+        this.validPurpose &&
+        this.validFullName &&
+        this.validDescription &&
+        !this.validSelect
+      ) {
+        const data = await createCard({
+          visitStatus: this.selectOpen.value,
+          fullName: this.inputUserFullName.value,
+          doctor: this.typeDoctors.value,
+          purposeTitle: this.visitPurpose.value,
+          description: this.visitDescription.value,
+          priority: this.urgencyPatient.value,
+          ageUser: this.therapistPatientAge.value,
+        });
+
+        new VisitTherapist(
+          deleteCardVisit,
+          editCardVisitFn,
+          data.visitStatus,
+          data.id,
+          data.purposeTitle,
+          data.fullName,
+          data.doctor,
+          data.priority,
+          data.description,
+          data.ageUser
+        ).render(containerCards);
+        this.closeCardForm();
+        document.body.style.overflow = "";
+      }
+
     });
   }
 
@@ -308,85 +401,30 @@ class CreateCardModal {
     }, 500);
   }
 
+
+  removeClassInvalid() {
+    this.visitPurpose.classList.remove("invalid");
+    this.inputUserFullName.classList.remove("invalid");
+    this.visitDescription.classList.remove("invalid");
+    this.urgencyPatient.classList.remove("invalid");
+  }
+
+
   selectWraper() {
     this.typeDoctors.addEventListener("click", () => {
       const typeDoctor = this.typeDoctors.value;
 
       if (typeDoctor === "cardiologist") {
         this.doctorsVisitListCardio.classList.toggle("modal_show");
+        this.removeClassInvalid();
       }
       if (typeDoctor === "dentist") {
         this.doctorsVisitListDentist.classList.toggle("modal_show");
+        this.removeClassInvalid();
       }
       if (typeDoctor === "therapist") {
         this.doctorsVisitListTherapist.classList.toggle("modal_show");
-      }
-    });
-  }
-
-  validModal() {
-    this.createCardModalForm.addEventListener("click", () => {
-      if (
-        this.inputUserFullName.value === "" ||
-        this.visitPurpose.value === "" ||
-        this.visitDescription.value === "" ||
-        this.urgencyPatient.value === ""
-      ) {
-        this.btnCreateVisiteCardio.disabled = true;
-        this.btnCreateVisiteDentist.disabled = true;
-        this.btnCreateVisiteTherapist.disabled = true;
-      } else {
-        this.btnCreateVisiteCardio.disabled = false;
-        this.btnCreateVisiteDentist.disabled = false;
-        this.btnCreateVisiteTherapist.disabled = false;
-      }
-    });
-
-    this.createCardModalForm.addEventListener("click", () => {
-      let value = this.inputUserFullName.value;
-      if (value === "") {
-        this.inputUserFullName.classList.add("invalid");
-        this.typeDoctors.disabled = true;
-      }
-      if (value) {
-        this.inputUserFullName.classList.remove("invalid");
-        this.typeDoctors.disabled = false;
-      }
-    });
-
-    this.createCardModalForm.addEventListener("click", () => {
-      let value = this.visitPurpose.value;
-      if (value === "") {
-        this.visitPurpose.classList.add("invalid");
-        this.typeDoctors.disabled = true;
-      }
-      if (value) {
-        this.visitPurpose.classList.remove("invalid");
-        this.typeDoctors.disabled = false;
-      }
-    });
-
-    this.createCardModalForm.addEventListener("click", () => {
-      let value = this.visitDescription.value;
-      if (value === "") {
-        this.visitDescription.classList.add("invalid");
-        this.typeDoctors.disabled = true;
-      }
-      if (value) {
-        this.visitDescription.classList.remove("invalid");
-        this.typeDoctors.disabled = false;
-      }
-    });
-
-    this.createCardModalForm.addEventListener("click", () => {
-      let value = this.urgencyPatient.value;
-
-      if (value === "") {
-        this.urgencyPatient.classList.add("invalid");
-        this.typeDoctors.disabled = true;
-      } else {
-        this.urgencyPatient.classList.remove("invalid");
-        this.typeDoctors.disabled = false;
+        this.removeClassInvalid();
       }
     });
   }
@@ -397,7 +435,6 @@ class CreateCardModal {
     this.dentistCreateModal();
     this.therapistCreateModal();
     this.selectWraper();
-    this.validModal();
     container.append(this.createCardModalDivBg, this.createCardModalForm);
   }
 }
